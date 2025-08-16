@@ -121,3 +121,67 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Alert Box Styles */
+.alert {
+  border-left: 4px solid;
+  padding: 12px 16px;
+  margin: 16px 0;
+  border-radius: 4px;
+}
+
+.alert-info {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+  color: #0d47a1;
+}
+
+.dark .alert-info {
+  background-color: rgba(33, 150, 243, 0.1);
+  border-color: #2196f3;
+  color: #90caf9;
+}
+
+.alert-warning {
+  background-color: #fff3e0;
+  border-color: #ff9800;
+  color: #e65100;
+}
+
+.dark .alert-warning {
+  background-color: rgba(255, 152, 0, 0.1);
+  border-color: #ff9800;
+  color: #ffb74d;
+}
+
+.alert-error {
+  background-color: #ffebee;
+  border-color: #f44336;
+  color: #b71c1c;
+}
+
+.dark .alert-error {
+  background-color: rgba(244, 67, 54, 0.1);
+  border-color: #f44336;
+  color: #ef5350;
+}
+
+.alert-success {
+  background-color: #e8f5e8;
+  border-color: #4caf50;
+  color: #1b5e20;
+}
+
+.dark .alert-success {
+  background-color: rgba(76, 175, 80, 0.1);
+  border-color: #4caf50;
+  color: #66bb6a;
+}
+
+.alert-content p {
+  margin: 0;
+}
+
+.alert-content p + p {
+  margin-top: 8px;
+}

@@ -1,0 +1,146 @@
+/* CSS Variables for code block theme */
+:root {
+  /* Light theme for code blocks (GitHub Light) - Default */
+  --hljs-bg: #f6f8fa;
+  --hljs-color: #24292e;
+  --hljs-comment: #6a737d;
+  --hljs-keyword: #d73a49;
+  --hljs-string: #032f62;
+  --hljs-number: #005cc5;
+  --hljs-function: #6f42c1;
+  --hljs-variable: #e36209;
+  --hljs-attribute: #22863a;
+  --hljs-built-in: #005cc5;
+  --hljs-border: #d1d5da;
+}
+
+/* Dark theme override - add .dark-code class to body or container to use */
+.dark-code {
+  --hljs-bg: #0d1117;
+  --hljs-color: #c9d1d9;
+  --hljs-comment: #8b949e;
+  --hljs-keyword: #ff7b72;
+  --hljs-string: #a5d6ff;
+  --hljs-number: #79c0ff;
+  --hljs-function: #d2a8ff;
+  --hljs-variable: #ffa657;
+  --hljs-attribute: #7ee83f;
+  --hljs-built-in: #79c0ff;
+  --hljs-border: #30363d;
+}
+
+/* Code block styles */
+pre.not-prose,
+pre.hljs,
+.not-prose pre {
+  background: var(--hljs-bg);
+  border: 1px solid var(--hljs-border);
+  border-radius: 6px;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.7;
+  margin: 1.5rem 0;
+  color: var(--hljs-color);
+}
+
+pre.not-prose code,
+pre.hljs code,
+.not-prose pre code {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: inherit;
+  font-family:
+    'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}
+
+/* Highlight.js syntax colors */
+.hljs-comment,
+.hljs-quote {
+  color: var(--hljs-comment);
+  font-style: italic;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-addition {
+  color: var(--hljs-keyword);
+}
+
+.hljs-string,
+.hljs-meta .hljs-string {
+  color: var(--hljs-string);
+}
+
+.hljs-number,
+.hljs-literal {
+  color: var(--hljs-number);
+}
+
+.hljs-title,
+.hljs-section,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-title.function_,
+.hljs-title.class_ {
+  color: var(--hljs-function);
+}
+
+.hljs-attr,
+.hljs-attribute,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-params {
+  color: var(--hljs-variable);
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-subst,
+.hljs-meta,
+.hljs-link,
+.hljs-selector-attr,
+.hljs-selector-pseudo {
+  color: var(--hljs-attribute);
+}
+
+.hljs-built_in,
+.hljs-builtin-name {
+  color: var(--hljs-built-in);
+}
+
+.hljs-deletion {
+  color: #ffdcd7;
+  background-color: #67060c;
+}
+
+.hljs-addition {
+  color: #aff5b4;
+  background-color: #033a16;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+/* Inline code styles (still within prose) */
+.prose code:not(.hljs),
+.prose-sm code:not(.hljs),
+.prose-lg code:not(.hljs) {
+  background: rgba(110, 118, 129, 0.1);
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  font-size: 0.875em;
+}
+
+.dark .prose code:not(.hljs),
+.dark .prose-sm code:not(.hljs),
+.dark .prose-lg code:not(.hljs) {
+  background: rgba(110, 118, 129, 0.2);
+  color: #c9d1d9;
+}

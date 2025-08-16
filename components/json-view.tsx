@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import { ChevronDown, ChevronRight, Maximize2, Minimize2 } from 'lucide-react';
+import { useState } from 'react';
 
 interface JsonViewProps {
   data: unknown;

@@ -1,11 +1,7 @@
-import { Button } from '@/components/ui/button';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { Button } from '@/components/ui/button';
 
 export default function Home() {
   return (
@@ -56,20 +52,6 @@ export default function Home() {
           >
             Read our docs
           </a>
-        </div>
-        <div className="flex gap-4">
-          <Button>default</Button>
-          <Button variant="outline">outline</Button>
-          <Button variant="ghost">ghost</Button>
-          <Button variant="link">link</Button>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <Button variant="destructive">hover</Button>
-            </TooltipTrigger>
-            <TooltipContent>
-              <p>Add to library</p>
-            </TooltipContent>
-          </Tooltip>
         </div>
 
         <div className="mt-8">

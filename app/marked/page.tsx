@@ -1,8 +1,11 @@
 'use client';
 
-import { useState, useEffect, useMemo, useCallback } from 'react';
-import { marked, lexer, Token } from 'marked';
+import Link from 'next/link';
+import { useCallback, useMemo, useState } from 'react';
+
+import { JsonView } from '@/components/json-view';
 import { Button } from '@/components/ui/button';
+import { ScrollArea } from '@/components/ui/scroll-area';
 import {
   Select,
   SelectContent,
@@ -10,24 +13,22 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { JsonView } from '@/components/json-view';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import Link from 'next/link';
-import { initialMarkdownContent } from './initial-content';
-import { usePanelResize } from '@/hooks/use-panel-resize';
+import { useMarkedParser } from '@/hooks/use-marked';
 import { useIsLargeScreen } from '@/hooks/use-media-query';
-import { useDebounce } from '@/hooks/use-debounce';
+import { usePanelResize } from '@/hooks/use-panel-resize';
+
+import { initialMarkdownContent } from './initial-content';
 
 type OutputView = 'preview' | 'html' | 'tokens';
 
 export default function MarkedDemo() {
   const [markdown, setMarkdown] = useState(initialMarkdownContent);
-  const [html, setHtml] = useState('');
-  const [tokens, setTokens] = useState<Token[]>([]);
   const [outputView, setOutputView] = useState<OutputView>('preview');
 
-  // Debounce the markdown input to improve performance
-  const debouncedMarkdown = useDebounce(markdown, 300);
+  // Use the custom marked hook with debouncing
+  const { html, tokens, isLoading } = useMarkedParser(markdown, {
+    debounce: 300,
+  });
 
   // Use the media query hook for responsive design
   const isLargeScreen = useIsLargeScreen();
@@ -39,19 +40,6 @@ export default function MarkedDemo() {
       minWidth: 20,
       maxWidth: 80,
     });
-
-  // Parse markdown only when debounced value changes
-  useEffect(() => {
-    const parseMarkdown = async () => {
-      const parsed = await marked(debouncedMarkdown);
-      setHtml(parsed);
-
-      // Generate tokens using the lexer
-      const tokenList = lexer(debouncedMarkdown);
-      setTokens(tokenList);
-    };
-    parseMarkdown();
-  }, [debouncedMarkdown]);
 
   // Memoize the textarea rows calculation
   const textareaRows = useMemo(() => {
@@ -136,7 +124,14 @@ export default function MarkedDemo() {
           }}
         >
           <div className="border-b px-6 py-3 flex items-center justify-between bg-gray-50 dark:bg-gray-900 flex-shrink-0">
-            <h2 className="font-semibold">Output</h2>
+            <h2 className="font-semibold">
+              Output
+              {isLoading && (
+                <span className="ml-2 text-sm text-gray-500">
+                  (Processing...)
+                </span>
+              )}
+            </h2>
             <div className="flex items-center gap-3">
               {(outputView === 'html' || outputView === 'tokens') && (
                 <Button variant="outline" size="sm" onClick={handleCopy}>
