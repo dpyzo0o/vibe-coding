@@ -54,10 +54,15 @@ export default function Home() {
           </a>
         </div>
 
-        <div className="mt-8">
+        <div className="mt-8 flex gap-4 flex-col sm:flex-row">
           <Link href="/marked">
             <Button size="lg" className="w-full sm:w-auto">
               Try Marked Demo →
+            </Button>
+          </Link>
+          <Link href="/trpc-demo">
+            <Button size="lg" variant="outline" className="w-full sm:w-auto">
+              Try tRPC Demo →
             </Button>
           </Link>
         </div>
